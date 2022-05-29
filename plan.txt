@@ -1,0 +1,15 @@
+План разработки веб-сервиса для настройки траффик детектора :)
+1) Создать модель с полями: 
+			a) �������� �����: Charfield 
+			b) �������������: Charfield
+			c) ����� ������������� �������� ���������: integerfield/charfield
+			d) ���� �������� ������������� �������� ���������: Datetimefield
+			not blank 
+			e) ����� ����������: Charfield/adressfield
+			f) GPS ���������� ���������: charfield
+			g) ����� ���� ������: charfield/addresfield
+			h) GPS ���������� ���� ������: charfield
+			i) ��� �������� ���: charfield
+��������� ����������� ����� ����� � OPENAPI ������ 100
+
+2) ������� �������������� initialized, setup, active, reset
