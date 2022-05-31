@@ -1,15 +1,22 @@
 План разработки веб-сервиса для настройки траффик детектора :)
 1) Создать модель с полями: 
-			a) �������� �����: Charfield 
-			b) �������������: Charfield
-			c) ����� ������������� �������� ���������: integerfield/charfield
-			d) ���� �������� ������������� �������� ���������: Datetimefield
+			a) serialNumber: Charfield 
+			b) model: Charfield
+			c) number: integerfield/charfield
+			d)  expirationDate: Datetimefield
 			not blank 
-			e) ����� ����������: Charfield/adressfield
-			f) GPS ���������� ���������: charfield
-			g) ����� ���� ������: charfield/addresfield
-			h) GPS ���������� ���� ������: charfield
-			i) ��� �������� ���: charfield
-��������� ����������� ����� ����� � OPENAPI ������ 100
+			e) address: Charfield/adressfield
+			f) GpsCoord: charfield
+			g) address_setup: charfield/addresfield
+			h) GPS location: charfield
+			i) vrpDetectionArea: charfield
 
-2) ������� �������������� initialized, setup, active, reset
+
+2) Состояния initialized, setup, active, reset
+
+Сделать  несколько сериализаторов с разными полями. Добавить queryset в представлении. И сделать несколько представлений.
+1) Простейше описать модель
+2) Описать прелставления/Serializers
+3) Написать ограничения
+4) Описать нормальное расположение полей согласно openapi.
+5) Написать вычисление полей

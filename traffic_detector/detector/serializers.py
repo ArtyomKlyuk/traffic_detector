@@ -1,8 +1,26 @@
 from rest_framework import serializers
-from .models import DetectorInitialized
+from .models import Detector
 
 
-class DetectorDetailSerializer(serializers.ModelSerializer):
+class DetectorInitializedSerializer(serializers.Serializer):
     class Meta:
-        model = DetectorInitialized
+        model = Detector
+        fields = ('serialNumber', 'model', 'conformityCertificate')
+
+
+class DetectorActiveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Detector
+        fields = ('address_setup', 'gps_coord_device', 'zone', 'address', 'vrpDetectionArea')
+
+
+class DetectorResetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Detector
         fields = ('__all__')
+
+
+class DetectorSetUpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Detector
+        fields = ('state')

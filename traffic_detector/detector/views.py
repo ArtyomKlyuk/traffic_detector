@@ -1,12 +1,24 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import DetectorInitialized
-from .serializers import DetectorDetailSerializer
+from .models import Detector
+from .serializers import *
 
 
 class DetectorInitializedView(generics.CreateAPIView):
-    queryset = DetectorInitialized.objects.all()
-    serializer_class = DetectorDetailSerializer
+    queryset = Detector.objects.all()
+    serializer_class = DetectorInitializedSerializer
 
-# Create your views here.
 
+class DetectorActiveView(generics.UpdateAPIView):
+    queryset = Detector.objects.all()
+    serializer_class = DetectorActiveSerializer
+
+
+class DetectorResetView(generics.DestroyAPIView):
+    queryset = Detector.objects.all()
+    serializer_class = DetectorResetSerializer
+
+
+class DetectorSetUpView(generics.UpdateAPIView):
+    queryset = Detector.objects.all()
+    serializer_class = DetectorSetUpSerializer
