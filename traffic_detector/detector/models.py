@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class ConformityCertificate(models.Model):
     """Свидетельство средства измерения"""
     number = models.CharField(verbose_name='Номер свидетельства', max_length=50)
@@ -20,16 +19,17 @@ class GpsCoord(models.Model):
 
 class Zone(models.Model):
     """Зона обзора"""
-    location = models.ForeignKey()
+    location = models.ForeignKey(GpsCoord, on_delete=models.CASCADE)
     address = models.CharField(verbose_name='Адрес зоны обзора', max_length=512)
     vrpDetectionArea = models.ForeignKey(Point, on_delete=models.CASCADE)
 
 
 class Detector(models.Model):  # Надо сделать минимальную длину(validator)
-    serialNumber = models.CharField(verbose_name='Серийный номер', max_length=50)  # , min_length=6
-    model = models.CharField(verbose_name='Производитель', max_length=50)  # , min_length=1
-    address = models.CharField(verbose_name='Адрес установки', max_length=512)
-    location = models.ForeignKey()
-    zone = models.ForeignKey()
+    serialNumber = models.CharField(verbose_name='Серийный номер', max_length=50, blank=True)  # min_length=6
+    model = models.CharField(verbose_name='Производитель', max_length=50, blank=True)  # min_length=1
+    address = models.CharField(verbose_name='Адрес установки', max_length=512, blank=True)
+    gps_coord = models.ForeignKey(GpsCoord, on_delete=models.CASCADE)
+    # location = models.ForeignKey()
+    zone = models.ForeignKey(Zone, on_delete=models.CASCADE, blank=True)
     STATES = ('NEW', 'SETUP', 'ACTIVE')
-    state = models.CharField(verbose_name='Режим работы детектора', choices=STATES)
+    state = models.CharField(verbose_name='Режим работы детектора', choices=STATES, blank=True)

@@ -1,17 +1,31 @@
 from rest_framework import serializers
-from .models import Detector
+from .models import Detector, ConformityCertificate
 
 
-class DetectorInitializedSerializer(serializers.Serializer):
+class DetectorInitializedSerializer(serializers.ModelSerializer):
+    conformityCertificate = serializers.SlugRelatedField(slug_field="certificate",
+                                                         queryset=ConformityCertificate.objects.all())
+
     class Meta:
         model = Detector
-        fields = ('serialNumber', 'model', 'conformityCertificate')
+        fields = (
+            'serialNumber',
+            'model',
+            'conformityCertificate'
+        )
 
 
 class DetectorActiveSerializer(serializers.ModelSerializer):
+
+
     class Meta:
         model = Detector
-        fields = ('address_setup', 'gps_coord_device', 'zone', 'address', 'vrpDetectionArea')
+        fields = (
+            'address',
+            'gps_coord_device',
+            'zone',
+            'address',
+            'vrpDetectionArea')
 
 
 class DetectorResetSerializer(serializers.ModelSerializer):
